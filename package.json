@@ -4,7 +4,7 @@
   "description": "Send WhatsApp messages from the terminal",
   "type": "module",
   "bin": {
-    "whatsapp": "./dist/index.js"
+    "whatsapp-cli": "./dist/index.js"
   },
   "scripts": {
     "build": "tsc",

@@ -13,7 +13,7 @@ export function configCommand(options: { defaultNumber?: string }): void {
   // No flags — show current config
   if (Object.keys(config).length === 0) {
     console.log("No configuration set yet.");
-    console.log('  whatsapp config --default-number "+491234567"');
+    console.log('  whatsapp-cli config --default-number "+491234567"');
     return;
   }
 

@@ -9,7 +9,7 @@ import { configCommand } from "./commands/config.js";
 const program = new Command();
 
 program
-  .name("whatsapp")
+  .name("whatsapp-cli")
   .description("Send WhatsApp messages from the terminal")
   .version("1.0.0");
 

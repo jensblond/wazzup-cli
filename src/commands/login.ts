@@ -30,14 +30,14 @@ export async function loginCommand(): Promise<void> {
     if (connection === "close") {
       const statusCode = (lastDisconnect?.error as Boom)?.output?.statusCode;
       if (statusCode === DisconnectReason.loggedOut) {
-        console.error("Logged out. Please run 'whatsapp login' again.");
+        console.error("Logged out. Please run 'whatsapp-cli login' again.");
         process.exit(1);
       }
     }
 
     if (connection === "open") {
       console.log("✅ Successfully logged in! Session saved.");
-      console.log("You can now use 'whatsapp send' to send messages.");
+      console.log("You can now use 'whatsapp-cli send' to send messages.");
       // Give Baileys a moment to persist credentials, then exit
       setTimeout(() => process.exit(0), 1000);
     }
