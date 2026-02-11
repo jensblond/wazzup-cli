@@ -33,16 +33,22 @@ async function startLogin(): Promise<void> {
     if (connection === "close") {
       const statusCode = (lastDisconnect?.error as Boom)?.output?.statusCode;
       if (statusCode === DisconnectReason.loggedOut) {
-        console.error("Logged out. Please run 'whatsapp-cli login' again.");
+        console.error("Logged out. Please run 'wazzup login' again.");
         process.exit(1);
       }
-      // Retry connection (e.g. after initial handshake failure)
-      startLogin();
+      if (statusCode === DisconnectReason.restartRequired) {
+        // Retry connection after restart-required signal
+        startLogin();
+      } else {
+        const msg = (lastDisconnect?.error as Boom)?.message || "unknown error";
+        console.error(`Connection failed (status ${statusCode}): ${msg}`);
+        process.exit(1);
+      }
     }
 
     if (connection === "open") {
       console.log("✅ Successfully logged in! Session saved.");
-      console.log("You can now use 'whatsapp-cli send' to send messages.");
+      console.log("You can now use 'wazzup send' to send messages.");
       setTimeout(() => process.exit(0), 1000);
     }
   });

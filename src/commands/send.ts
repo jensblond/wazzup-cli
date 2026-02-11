@@ -40,7 +40,7 @@ export async function sendCommand(options: {
     console.error(
       "Error: No recipient specified. Use --to or set a default number:"
     );
-    console.error('  whatsapp-cli config --default-number "+491234567"');
+    console.error('  wazzup config --default-number "+491234567"');
     process.exit(1);
   }
 
@@ -56,7 +56,7 @@ export async function sendCommand(options: {
 
   // Check auth
   if (!isAuthenticated()) {
-    console.error("Error: Not logged in. Run 'whatsapp-cli login' first.");
+    console.error("Error: Not logged in. Run 'wazzup login' first.");
     process.exit(1);
   }
 
@@ -77,7 +77,7 @@ export async function sendCommand(options: {
     if (connection === "close") {
       const statusCode = (lastDisconnect?.error as Boom)?.output?.statusCode;
       if (statusCode === DisconnectReason.loggedOut) {
-        console.error("Session expired. Please run 'whatsapp-cli login' again.");
+        console.error("Session expired. Please run 'wazzup login' again.");
         process.exit(1);
       }
       console.error("Connection closed unexpectedly.");

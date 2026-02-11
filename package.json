@@ -1,17 +1,38 @@
 {
-  "name": "whatsapp-cli",
+  "name": "wazzup-cli",
   "version": "1.0.0",
   "description": "Send WhatsApp messages from the terminal",
   "type": "module",
-  "bin": {
-    "whatsapp-cli": "./dist/index.js"
+  "license": "MIT",
+  "author": "jensblond",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jensblond/wazzup-cli.git"
   },
+  "bugs": {
+    "url": "https://github.com/jensblond/wazzup-cli/issues"
+  },
+  "homepage": "https://github.com/jensblond/wazzup-cli#readme",
+  "keywords": [
+    "whatsapp",
+    "cli",
+    "terminal",
+    "messaging",
+    "send"
+  ],
+  "bin": {
+    "wazzup": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc",
-    "dev": "tsx src/index.ts"
+    "dev": "tsx src/index.ts",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@whiskeysockets/baileys": "^6.7.16",
+    "@whiskeysockets/baileys": "^7.0.0-rc.9",
     "commander": "^13.1.0",
     "pino": "^10.3.1",
     "qrcode-terminal": "^0.12.0"
