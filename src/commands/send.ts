@@ -5,6 +5,9 @@ import makeWASocket, {
 import { AUTH_DIR, isAuthenticated } from "../lib/auth.js";
 import { loadConfig } from "../lib/config.js";
 import { Boom } from "@hapi/boom";
+import P from "pino";
+
+const logger = P({ level: "silent" }) as any;
 
 function formatPhoneNumber(phone: string): string {
   // Remove +, spaces, dashes -> append @s.whatsapp.net
@@ -61,7 +64,7 @@ export async function sendCommand(options: {
 
   const sock = makeWASocket({
     auth: state,
-    printQRInTerminal: false,
+    logger,
   });
 
   sock.ev.on("creds.update", saveCreds);
@@ -77,7 +80,6 @@ export async function sendCommand(options: {
         console.error("Session expired. Please run 'whatsapp-cli login' again.");
         process.exit(1);
       }
-      // Other close reasons — just exit with error
       console.error("Connection closed unexpectedly.");
       process.exit(1);
     }
