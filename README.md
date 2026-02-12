@@ -30,6 +30,12 @@ wazzup send --to "+491234567890" --message "Hello from the terminal!"
 echo "Server is down!" | wazzup send --to "+491234567890"
 ```
 
+### 4. Listen for incoming messages
+
+```bash
+wazzup receive
+```
+
 ## Commands
 
 ### `wazzup login`
@@ -48,6 +54,35 @@ Send a message to a phone number.
 |---|---|
 | `--to <number>` | Recipient phone number with country code (e.g. `+491234567890`) |
 | `--message <text>` | Message text. If omitted, reads from stdin. |
+
+### `wazzup receive`
+
+Listen for incoming messages and print them to stdout. Runs until Ctrl+C.
+
+| Option | Description |
+|---|---|
+| `--from <number>` | Only show messages from this number |
+| `--json` | Output one JSON object per line (for scripting) |
+
+**Human-readable output (default):**
+```
+[2026-02-11 16:30] +491234567890 (Jens): Hello there
+[2026-02-11 16:31] +491234567890 (Jens): How are you?
+```
+
+**JSON output (`--json`):**
+```json
+{"timestamp":"2026-02-11T15:30:00.000Z","from":"+491234567890","name":"Jens","message":"Hello there"}
+```
+
+**Examples:**
+```bash
+# All messages as JSON, pipe to jq
+wazzup receive --json | jq '.message'
+
+# Only messages from one contact
+wazzup receive --from "+491234567890"
+```
 
 ### `wazzup config`
 
