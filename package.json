@@ -21,7 +21,7 @@
     "send"
   ],
   "bin": {
-    "wazzup": "./dist/index.js"
+    "wazzup": "dist/index.js"
   },
   "files": [
     "dist"
